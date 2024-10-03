@@ -44,7 +44,7 @@ export async function POST(request: Request) {
 
     if (response.ok) {
       // Find approval URL and return it
-      const approvalUrl = data.links.find((link) => link.rel === 'approval_url');
+      const approvalUrl = data.links.find((link: { rel: string; }) => link.rel === 'approval_url');
       return NextResponse.json({ approvalUrl: approvalUrl.href });
     } else {
       return NextResponse.json({ error: data.message }, { status: response.status });
